@@ -59,6 +59,7 @@ function App() {
   // DELETE EMPLOYEE
 
   const deleteEmployee = async (id) => {
+    
     await fetch(`${API_URL}/${id}`, {
       method: "DELETE",
     });
@@ -109,7 +110,7 @@ function App() {
 
             <button
               className="delete-btn"
-              onClick={() => deleteEmployee(employee.id)}
+              onClick={() => deleteEmployee(employee._id)}
             >
               Delete
             </button>
