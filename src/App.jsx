@@ -13,12 +13,19 @@ function App() {
 
   // FETCH EMPLOYEES
 
+  // const getEmployees = async () => {
+  //   const response = await fetch(API_URL);
+  //   const data = await response.json();
+  //   setEmployees(data);
+  // };
   const getEmployees = async () => {
-    const response = await fetch(API_URL);
-    const data = await response.json();
-    setEmployees(data);
-  };
-  
+  const response = await fetch(API_URL);
+  const data = await response.json();
+
+  console.log(data); // Add this
+
+  setEmployees(data);
+};
   useEffect(() => {
     getEmployees();
   }, []);
@@ -101,7 +108,7 @@ function App() {
 
       <div className="employee-grid">
         {employees.map((employee) => (
-          <div key={employee.id} className="card">
+          <div key={employee._id || employee.id} className="card">
             <h3>{employee.name}</h3>
 
             <p>Department: {employee.department}</p>
@@ -110,7 +117,7 @@ function App() {
 
             <button
               className="delete-btn"
-              onClick={() => deleteEmployee(employee._id)}
+              onClick={() => deleteEmployee(employee._id || employee.id)}
             >
               Delete
             </button>
